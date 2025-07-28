@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SkinTone Genie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    :root {
+      --primary: #EFA7B7;
+      --accent: #FFF1F5;
+      --bg: #FFF8F5;
+      --text: #333;
+      --swatch: #d98ca0;
+      --shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .banner-placeholder {
+      width: 100%;
+      height: 280px;
+      background: #f3cdd6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.3rem;
+      color: #6c3753;
+    }
+
+    .guideline-section {
+      background: var(--accent);
+      padding: 3rem 1rem;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      flex-wrap: wrap;
+    }
+
+    .guideline-step {
+      max-width: 220px;
+      margin: 1rem;
+    }
+
+    .guideline-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .action-section {
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .upload-options {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .upload-options label,
+    .upload-options button {
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: var(--shadow);
+      transition: all 0.2s ease;
+    }
+
+    .upload-options label:hover,
+    .upload-options button:hover {
+      transform: translateY(-3px);
+    }
+
+    #file-input {
+      display: none;
+    }
+
+    .preview-container {
+      margin-top: 1.5rem;
+    }
+
+    .preview-container img {
+      max-width: 300px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .analyze-btn {
+      background: #d98ca0;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      margin-top: 2rem;
+    }
+
+    .result-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      margin-top: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 900px;
+      margin-inline: auto;
+    }
+
+    .result-heading {
+      font-size: 1.75rem;
+      color: #d98ca0;
+      font-weight: 600;
+    }
+
+    .undertone-label {
+      font-size: 1.25rem;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .swatch-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .swatch {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
+
+    .summary-text {
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .rec-details .rec-line {
+      font-size: 1rem;
+      margin: 0.3rem 0;
+    }
+
+    footer {
+      background: #f8e3dc;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+      color: var(--text);
+    }
+    .banner-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Discover Your Skin Undertone</h1>
+    <p>Upload a photo and get color suggestions made for you</p>
+  </header>
+
+  <div class="banner-container">
+  <img src="{{ url_for('static', filename='banner.png') }}" alt="Banner" class="banner-image">
+</div>
+
+  <section class="guideline-section">
+    <div class="guideline-step">
+      <img src="static/upload.png" class="guideline-icon" alt="Upload">
+      <h3>Upload</h3>
+      <p>Upload or take a selfie</p>
+    </div>
+    <div class="guideline-step">
+      <img src="static/image2.png" class="guideline-icon" alt="Analyze">
+      <h3>Analyze</h3>
+      <p>We detect your undertone</p>
+    </div>
+    <div class="guideline-step">
+      <img src="static/image3.png" class="guideline-icon" alt="Suggest">
+      <h3>Suggest</h3>
+      <p>Get your color palette</p>
+    </div>
+  </section>
+
+  <section class="action-section">
+    <h2>Upload or Take a Selfie</h2>
+    <div class="upload-options">
+      <label for="file-input">📁 Upload Image</label>
+      <button onclick="alert('Camera feature coming soon')">📸 Take Selfie</button>
+    </div>
+    <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)">
+
+    <div class="preview-container" id="preview-container" style="display:none;">
+      <img id="image-preview" src="#" alt="Preview">
+    </div>
+
+    <button class="analyze-btn" onclick="analyzeImage()">Analyze</button>
+
+    <section id="result-section" style="display: none;" class="result-card">
+      <h2 id="undertone-title" class="result-heading">Your Undertone</h2>
+      <p id="undertone-type" class="undertone-label">💜 Neutral Undertone</p>
+      <div id="color-swatches" class="swatch-group"></div>
+      <p id="summary" class="summary-text"></p>
+      <div class="rec-details">
+        <p id="dress-recs" class="rec-line"></p>
+        <p id="makeup-recs" class="rec-line"></p>
+        <p id="hair-recs" class="rec-line"></p>
+      </div>
+    </section>
+  </section>
+
+  <footer>
+    © 2025 SkinTone Genie. All rights reserved.
+  </footer>
+
+  <script>
+    function previewImage(event) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        document.getElementById('image-preview').src = reader.result;
+        document.getElementById('preview-container').style.display = 'block';
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    async function analyzeImage() {
+      const formData = new FormData();
+      const fileInput = document.getElementById("file-input");
+      const file = fileInput.files[0];
+
+      if (!file) {
+        alert("Please upload an image first!");
+        return;
+      }
+
+      formData.append("image", file);
+
+      try {
+        const res = await fetch("/analyze", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await res.json();
+
+        if (data.error) {
+          alert(data.error);
+          return;
+        }
+
+        document.getElementById("result-section").style.display = "block";
+        document.getElementById("undertone-title").innerText = `Your Undertone: ${data.undertone}`;
+        document.getElementById("undertone-type").innerHTML = `${data.emoji} ${data.undertone} Undertone`;
+
+        const swatches = document.getElementById("color-swatches");
+        swatches.innerHTML = "";
+        data.colors.forEach((hex) => {
+          const dot = document.createElement("div");
+          dot.className = "swatch";
+          dot.style.backgroundColor = hex;
+          swatches.appendChild(dot);
+        });
+
+        document.getElementById("summary").innerText = data.summary;
+
+        const recs = data.recommendations;
+        document.getElementById("dress-recs").innerHTML = `👗 ${recs["Dress Colors"]}`;
+        document.getElementById("makeup-recs").innerHTML = `💄 ${recs["Makeup"]}`;
+        document.getElementById("hair-recs").innerHTML = `💇 ${recs["Hair"]}`;
+      } catch (error) {
+        alert("Failed to analyze image.");
+        console.error("Error:", error);
+      }
+    }
+  </script>
+</body>
+</html>
